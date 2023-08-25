@@ -11,3 +11,6 @@ and 1-2 indicating metaphors that fall somewhere between conventional and novel.
 where the current one is part of. For example, there is no edge between alocohol and abuse, but there exists a 
 concept "alcohol_abuse."  
 
+
+File : create_conventional_novel_intermediate_files.py creates conventional.csv, novel.csv and intermediate.csv from
+original train data file
