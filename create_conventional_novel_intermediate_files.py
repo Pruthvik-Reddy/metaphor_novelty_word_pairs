@@ -48,4 +48,4 @@ novel_df=pd.DataFrame(novel_data)
 
 conventional_df.to_csv("conventional.csv")
 intermediate_df.to_csv("intermediate.csv")
-novel_df.to_Csv("novel.csv")
+novel_df.to_csv("novel.csv")
