@@ -9,7 +9,7 @@ data.columns=["relation","start_node","end_node"]
 
 metaphor_columns=["word1","word2","score"]
 csv_file = 'conventional.csv'
-conventional_data=pd.DataFrame(csv_file)
+conventional_data=pd.read_csv(csv_file)
 conventional_words1=conventional_data["word1"]
 conventional_words2=conventional_data["word2"]
 
