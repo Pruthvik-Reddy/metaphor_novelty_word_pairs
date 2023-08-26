@@ -7,27 +7,22 @@ data.columns=["relation","start_node","end_node"]
 
 
 
+metaphor_columns=["word1","word2","score"]
+csv_file = 'conventional.csv'
+conventional_data=pd.DataFrame(csv_file)
+conventional_words1=conventional_data["word1"]
+conventional_words2=conventional_data["word2"]
 
-csv_file = 'MOH-X_formatted_svo_cleaned.csv'
-metaphoric_pairs=[]
-literal_pairs=[]
 
-with open(csv_file, 'r') as file:
-    reader = csv.reader(file)
-    for row in reader:
-        if row[5] == "0" or row[5]==0:
-            literal_pairs.append((row[0],row[2]))
-        else:
-            metaphoric_pairs.append((row[0],row[2]))
-
+        
 
 positive_metaphoric_pairs_count=0
 negative_metaphoric_pairs_count=0
 
 
-for i in range(len(metaphoric_pairs)):
-  concept1=metaphoric_pairs[i][0]
-  concept2=metaphoric_pairs[i][1]
+for i in range(len(conventional_words1)):
+  concept1=conventional_words1[i]
+  concept2=conventional_words2[i]
 
   filtered_data = data[data.iloc[:, 1] == concept1]
   filtered_data_2 = data[data.iloc[:, 2] == concept1]
@@ -43,26 +38,6 @@ for i in range(len(metaphoric_pairs)):
 
     
 
-print("The fraction of pairs containing edges is : ",positive_metaphoric_pairs_count/len(metaphoric_pairs))
-print("The fraction of pairs not containing edges is : ",negative_metaphoric_pairs_count/len(metaphoric_pairs))
-
-
-positive_literal_pairs_count=0
-negative_literal_pairs_count=0
-for i in range(len(literal_pairs)):
-  concept1=literal_pairs[i][0]
-  concept2=literal_pairs[i][1]
-
-  filtered_data = data[data.iloc[:, 1] == concept1]
-  filtered_data_2 = data[data.iloc[:, 2] == concept1]
-  combined_df = pd.concat([filtered_data, filtered_data_2], axis=0)
-  end_exists = combined_df["start_node"].str.contains(concept2, case=False) | combined_df["end_node"].str.contains(concept2, case=False)
-  if end_exists.any():
-     positive_literal_pairs_count+=1
-     print("Positive : ", concept1,concept2)
-  else:
-    negative_literal_pairs_count+=1
-    print("Negative : ", concept1,concept2)
-print("The fraction of pairs containing edges is : ",positive_literal_pairs_count/len(literal_pairs))
-print("The fraction of pairs not containing edges is : ",negative_literal_pairs_count/len(literal_pairs))
+print("The fraction of pairs containing edges is : ",positive_metaphoric_pairs_count/len(conventional_words1))
+print("The fraction of pairs not containing edges is : ",negative_metaphoric_pairs_count/len(conventional_words1))
 
