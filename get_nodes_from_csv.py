@@ -8,7 +8,7 @@ data.columns=["relation","start_node","end_node"]
 
 
 metaphor_columns=["word1","word2","score"]
-csv_file = 'conventional.csv'
+csv_file = 'intermediate.csv'
 conventional_data=pd.read_csv(csv_file)
 conventional_words1=conventional_data["word1"]
 conventional_words2=conventional_data["word2"]
@@ -30,10 +30,10 @@ for i in range(len(conventional_words1)):
   end_exists = combined_df["start_node"].str.contains(concept2, case=False) | combined_df["end_node"].str.contains(concept2, case=False)
   if end_exists.any():
      positive_metaphoric_pairs_count+=1
-     print("Positive : ", concept1,concept2)
+     #print("Positive : ", concept1,concept2)
   else:
     negative_metaphoric_pairs_count+=1
-    print("Negative : ", concept1,concept2)
+    #print("Negative : ", concept1,concept2)
     
 
     
